@@ -603,6 +603,7 @@ var Select = React.createClass({
 
 	loadAsyncOptions: function loadAsyncOptions(input, state, callback) {
 		var _this6 = this;
+		if (!input) { return; }
 
 		var thisRequestId = this._currentRequestId = requestId++;
 		if (this.props.cacheAsyncResults) {

@@ -529,6 +529,8 @@ var Select = React.createClass({
 
 	loadAsyncOptions: function(input, state, callback) {
 		var thisRequestId = this._currentRequestId = requestId++;
+		if (!input) { return; }
+
 		if (this.props.cacheAsyncResults) {
 			for (var i = 0; i <= input.length; i++) {
 				var cacheKey = input.slice(0, i);
