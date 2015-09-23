@@ -206,7 +206,7 @@ var Select = React.createClass({
 		clearAllText: React.PropTypes.string, // title for the "clear" control when multi: true
 		clearValueText: React.PropTypes.string, // title for the "clear" control
 		clearable: React.PropTypes.bool, // should it be possible to reset value
-		delayAsyncMs: React.PropTypes.number, // time delay before querying after a keyup
+		delayAsyncMs: React.PropTypes.number, // time delay before querying after an input change
 		delimiter: React.PropTypes.string, // delimiter to use to join multiple values
 		disabled: React.PropTypes.bool, // whether the Select is disabled or not
 		filterOption: React.PropTypes.func, // method to filter a single option: function(option, filterString)
@@ -682,12 +682,12 @@ var Select = React.createClass({
 		this._optionsFilterString = event.target.value;
 
 		if (this.props.onInputChange) {
-			this.props.onInputChange(event.target.value);
+			this.props.onInputChange(this._optionsFilterString);
 		}
 
 		if (this.props.asyncOptions) {
 			var callAsyncLoad = (function () {
-				this.loadAsyncOptions(event.target.value, {
+				this.loadAsyncOptions(this._optionsFilterString, {
 					isLoading: false,
 					isOpen: true
 				}, this._bindCloseMenuIfClickedOutside);
